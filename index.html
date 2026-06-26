@@ -175,6 +175,10 @@
             transition: color 0.4s ease;
         }
 
+        .preload, .preload * {
+            transition: none !important;
+        }
+
         @media (max-width: 640px) {
             nav {
                 flex-wrap: wrap;
@@ -190,7 +194,7 @@
         }
     </style>
 </head>
-<body>
+<body class="preload">
 
     <script>
         if (localStorage.getItem('theme') === 'dark') {
@@ -264,6 +268,10 @@
 
             const savedLang = localStorage.getItem('lang') || 'en';
             switchLang(savedLang);
+
+            setTimeout(() => {
+                document.body.classList.remove('preload');
+            }, 50);
         });
     </script>
 
