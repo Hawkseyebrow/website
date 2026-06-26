@@ -192,6 +192,12 @@
 </head>
 <body>
 
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+
     <nav>
         <div class="theme-switcher">
             <button class="theme-btn active" onclick="switchTheme('light')" title="Light Mode">☀️</button>
@@ -216,13 +222,9 @@
     <div class="container">
         <div class="about-text">
             <h1 data-en="About Me" data-pl="O mnie"></h1>
-            <p data-en="Hi, I'm Anna, a Polish-English tranlsator and a gamer that mostly plays indie titles."
-               data-pl="Hej, tu Anna. Jestem tłumaczem języka angielskiego oraz graczem, który interesuje się głównie grami indie.">
+            <p data-en="Hi text."
+               data-pl="Hi text.">
             </p>
-            <!--<br>
-            <p data-en="If you're here, you're probably either interested in my game localizations or my indie games blog. Both can be accesssed from the top menu. I'm happy to have you here and I hope you enjoy browsing my site!"
-               data-pl="Jeśli tu jesteś, to pewnie zainteresowały Cię moje lokalizacje gier lub blog o grach indie. Obydwa możesz znaleźć w górnym pasku menu. Cieszę się, że tu jesteś i mam nadzieję, że spodoba Ci się moja strona!">
-            </p>-->
         </div>
     </div>
 
@@ -255,8 +257,10 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme && savedTheme !== 'light') switchTheme(savedTheme);
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            const activeThemeBtn = document.querySelector(`.theme-btn[onclick="switchTheme('${savedTheme}')"]`);
+            if (activeThemeBtn) activeThemeBtn.classList.add('active');
 
             const savedLang = localStorage.getItem('lang') || 'en';
             switchLang(savedLang);
