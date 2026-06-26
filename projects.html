@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #eef2f7;
+            color: #3a3a4a;
+            min-height: 100vh;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow: hidden;
+        }
+
+        body.dark {
+            background-color: #1a1a2e;
+            color: #d0d0e0;
+        }
+
+        body.dark nav {
+            background: rgba(30, 30, 50, 0.75);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        body.dark nav a {
+            color: #a0a8c0;
+        }
+
+        body.dark nav a:hover,
+        body.dark nav a.active {
+            background: #2a2a48;
+            color: #7eaadf;
+            box-shadow: 0 4px 12px rgba(40, 60, 100, 0.3);
+        }
+
+        body.dark .lang-divider,
+        body.dark .theme-divider {
+            background: #3a3a58;
+        }
+
+        body.dark .lang-btn:hover,
+        body.dark .theme-btn:hover,
+        body.dark .lang-btn.active,
+        body.dark .theme-btn.active {
+            background: #2a2a48;
+        }
+
+        body.dark .lang-btn.active,
+        body.dark .theme-btn.active {
+            border-color: #7eaadf;
+        }
+
+        body.dark .project-card {
+            background: rgba(30, 30, 50, 0.7);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        body.dark .project-card h2 {
+            color: #7eaadf;
+        }
+
+        body.dark .project-tag {
+            background: #2a2a48;
+            color: #a0b4d0;
+            border-color: #3a3a58;
+        }
+
+        body.dark .project-link {
+            color: #7eaadf;
+        }
+
+        body.dark .project-link:hover {
+            color: #a0c4f0;
+        }
+
+        body.dark .project-img-placeholder {
+            background: #2a2a48;
+            color: #555578;
+        }
+
+        nav {
+            max-width: 820px;
+            margin: 30px auto 0;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(100, 120, 160, 0.12);
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 10px 24px;
+            border-radius: 12px;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #d6e4f5;
+            color: #2b5ea7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 140, 200, 0.18);
+        }
+
+        nav a.active {
+            background: #c4d8f0;
+            color: #2b5ea7;
+        }
+
+        .lang-divider,
+        .theme-divider {
+            width: 1px;
+            height: 20px;
+            background: #c4d0e0;
+            margin: 0 8px;
+            transition: background 0.4s ease;
+        }
+
+        .lang-switcher,
+        .theme-switcher {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .lang-btn,
+        .theme-btn {
+            background: none;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: transform 0.25s ease, border-color 0.3s ease, background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-btn:hover,
+        .theme-btn:hover {
+            transform: translateY(-2px);
+            background: #d6e4f5;
+        }
+
+        .lang-btn.active,
+        .theme-btn.active {
+            border-color: #2b5ea7;
+            background: #c4d8f0;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            padding: 28px 32px;
+            box-shadow: 0 6px 24px rgba(100, 130, 180, 0.1);
+            display: flex;
+            gap: 28px;
+            align-items: stretch;
+            transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(100, 130, 180, 0.18);
+        }
+
+        .project-img {
+            flex-shrink: 0;
+            width: 276px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-img img {
+            width: 100%;
+            aspect-ratio: 460 / 215;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .project-img-placeholder {
+            width: 100%;
+            aspect-ratio: 460 / 215;
+            background: #dce4f0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #8898b0;
+            font-weight: 600;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        .project-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .project-card h2 {
+            font-size: 1.35rem;
+            color: #2b5ea7;
+            font-weight: 700;
+            transition: color 0.4s ease;
+        }
+
+        .project-description {
+            font-size: 0.93rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: -4px;
+        }
+
+        .project-tag {
+            background: #dce8f5;
+            color: #3a5a8a;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid #c4d8f0;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #2b5ea7;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: 4px;
+            transition: color 0.3s ease, transform 0.25s ease;
+            width: fit-content;
+        }
+
+        .project-link:hover {
+            color: #1a4580;
+            transform: translateX(3px);
+        }
+
+        .project-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            transition: transform 0.25s ease;
+        }
+
+        .project-link:hover svg {
+            transform: translateX(2px);
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                flex-wrap: wrap;
+                margin: 16px 20px 0;
+            }
+            nav a {
+                padding: 8px 16px;
+                font-size: 0.88rem;
+            }
+            .container {
+                padding: 0 20px 40px;
+            }
+            .project-card {
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+            }
+            .project-img {
+                width: 100%;
+                max-height: 200px;
+            }
+            .project-img-placeholder {
+                min-height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="theme-switcher">
+            <button class="theme-btn active" onclick="switchTheme('light')" title="Light Mode">☀️</button>
+            <button class="theme-btn" onclick="switchTheme('dark')" title="Dark Mode">🌙</button>
+        </div>
+
+        <div class="theme-divider"></div>
+
+        <a href="index.html" data-en="About Me" data-pl="O mnie">About Me</a>
+        <a href="projects.html" class="active" data-en="Projects" data-pl="Projekty">Projects</a>
+        <!--<a href="blog.html" data-en="Blog" data-pl="Blog">Blog</a>-->
+        <a href="contact.html" data-en="Contact" data-pl="Kontakt">Contact</a>
+
+        <div class="lang-divider"></div>
+
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('en')" title="English">🇬🇧</button>
+            <button class="lang-btn" onclick="switchLang('pl')" title="Polski">🇵🇱</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="project-card">
+            <div class="project-img">
+                <img src="angel_clicker_image.jpg">
+            </div>
+            <div class="project-info">
+                <h2 data-en="Angel Clicker" data-pl="Angel Clicker"></h2>
+                <div class="project-tags">
+                    <span class="project-tag">oldflowerGames</span>
+                </div>
+                <p class="project-description"
+                   data-en="Polish localization of the game, its Steam page and achievements"
+                   data-pl="Polskie tłumaczenie gry, strony Steam oraz osiągnięć">
+                </p>
+                <a href="https://store.steampowered.com/app/4247760/Angel_Clicker/" class="project-link" data-en="Steam page" data-pl="Strona Steam">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img">
+                <img src="alien_morgue_image.jpg">
+            </div>
+            <div class="project-info">
+                <h2 data-en="Alien Morgue" data-pl="Alien Morgue"></h2>
+                <div class="project-tags">
+                    <span class="project-tag">BurGumGames</span>
+                </div>
+                <p class="project-description"
+                   data-en="Polish localization of the game"
+                   data-pl="Polskie tłumaczenie gry">
+                </p>
+                <a href="https://store.steampowered.com/app/3885910/Alien_Morgue/" class="project-link" data-en="Steam Page" data-pl="Strona Steam">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img">
+                <img src="tidy_backpack_image.jpg">
+            </div>
+            <div class="project-info">
+                <h2 data-en="Tidy Backpack" data-pl="Tidy Backpack"></h2>
+                <div class="project-tags">
+                    <span class="project-tag">BurGumGames</span>
+                </div>
+                <p class="project-description"
+                   data-en="Polish localization of the game"
+                   data-pl="Polskie tłumaczenie gry">
+                </p>
+                <a href="https://store.steampowered.com/app/3047220/Tidy_Backpack/?curator_clanid=45054438" class="project-link" data-en="Steam Page" data-pl="Strona Steam">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+            } else {
+                document.body.classList.remove('dark');
+            }
+
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.theme-btn[onclick="switchTheme('${theme}')"]`).classList.add('active');
+
+            localStorage.setItem('theme', theme);
+        }
+
+        function switchLang(lang) {
+            document.querySelectorAll('[data-en][data-pl]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (el.children.length > 0) {
+                    const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+                    if (textNode) {
+                        textNode.textContent = text + ' ';
+                    }
+                } else {
+                    el.textContent = text;
+                }
+            });
+
+            document.documentElement.lang = lang;
+            document.title = lang === 'pl' ? 'Projekty' : 'Projects';
+
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn[onclick="switchLang('${lang}')"]`).classList.add('active');
+
+            localStorage.setItem('lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme && savedTheme !== 'light') switchTheme(savedTheme);
+
+            const savedLang = localStorage.getItem('lang') || 'en';
+            switchLang(savedLang);
+        });
+    </script>
+
+</body>
+</html>
