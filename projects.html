@@ -294,6 +294,10 @@
             transform: translateX(2px);
         }
 
+        .preload, .preload * {
+            transition: none !important;
+        }
+
         @media (max-width: 640px) {
             nav {
                 flex-wrap: wrap;
@@ -321,7 +325,13 @@
         }
     </style>
 </head>
-<body>
+<body class="preload">
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
 
     <nav>
         <div class="theme-switcher">
@@ -447,11 +457,17 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme && savedTheme !== 'light') switchTheme(savedTheme);
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            const activeThemeBtn = document.querySelector(`.theme-btn[onclick="switchTheme('${savedTheme}')"]`);
+            if (activeThemeBtn) activeThemeBtn.classList.add('active');
 
             const savedLang = localStorage.getItem('lang') || 'en';
             switchLang(savedLang);
+
+            setTimeout(() => {
+                document.body.classList.remove('preload');
+            }, 50);
         });
     </script>
 
