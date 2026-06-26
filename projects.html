@@ -212,20 +212,6 @@
             display: block;
         }
 
-        .project-img-placeholder {
-            width: 100%;
-            aspect-ratio: 460 / 215;
-            background: #dce4f0;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            color: #8898b0;
-            font-weight: 600;
-            transition: background 0.4s ease, color 0.4s ease;
-        }
-
         .project-info {
             flex: 1;
             display: flex;
@@ -255,6 +241,8 @@
         }
 
         .project-tag {
+            display: inline-block;
+            text-decoration: none;
             background: #dce8f5;
             color: #3a5a8a;
             font-size: 0.78rem;
@@ -262,7 +250,20 @@
             padding: 4px 12px;
             border-radius: 20px;
             border: 1px solid #c4d8f0;
-            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .project-tag a,
+        .project-tag a:visited,
+        .project-tag a:active {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .project-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(58, 90, 138, 0.15);
+            background: #c4d8f0;
         }
 
         .project-link {
@@ -375,7 +376,7 @@
             <div class="project-info">
                 <h2 data-en="Angel Clicker" data-pl="Angel Clicker"></h2>
                 <div class="project-tags">
-                    <span class="project-tag"><a href="https://oldflowergames.itch.io/">oldflowerGames</a></span>
+                    <a href="https://oldflowergames.itch.io/" class="project-tag">oldflowerGames</a>
                 </div>
                 <p class="project-description"
                    data-en="Polish localization of the game, its Steam page and achievements"
@@ -396,7 +397,7 @@
             <div class="project-info">
                 <h2 data-en="Alien Morgue" data-pl="Alien Morgue"></h2>
                 <div class="project-tags">
-                    <span class="project-tag"><a href="https://burgumgames.com/">BurGumGames</a></span>
+                    <a href="https://burgumgames.com/" class="project-tag">BurGumGames</a>
                 </div>
                 <p class="project-description"
                    data-en="Polish localization of the game"
@@ -417,7 +418,7 @@
             <div class="project-info">
                 <h2 data-en="Tidy Backpack" data-pl="Tidy Backpack"></h2>
                 <div class="project-tags">
-                    <span class="project-tag"><a href="https://burgumgames.com/">BurGumGames</a></span>
+                    <a href="https://burgumgames.com/" class="project-tag">BurGumGames</a>
                 </div>
                 <p class="project-description"
                    data-en="Polish localization of the game"
