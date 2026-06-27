@@ -13,7 +13,15 @@ function switchTheme(theme) {
 
 function switchLang(lang) {
     document.querySelectorAll('[data-en][data-pl]').forEach(el => {
-        el.textContent = el.getAttribute('data-' + lang);
+        const text = el.getAttribute('data-' + lang);
+            if (el.children.length > 0) {
+            const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+            if (textNode) {
+                textNode.textContent = text + ' ';
+            }
+        } else {
+            el.textContent = text;
+        }
     });
 
     document.documentElement.lang = lang;
